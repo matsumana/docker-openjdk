@@ -10,9 +10,9 @@ RUN curl -L -O https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.
 FROM debian:9.5-slim 
 
 COPY --from=builder /tmp/openjdk-11_linux-x64_bin.tar.gz /root
-RUN mkdir /usr/lib/jvm && \
-    tar xvf /root/openjdk-11_linux-x64_bin.tar.gz -C /usr/lib/jvm && \
-    rm -f /root/openjdk-11_linux-x64_bin.tar.gz && \
-    update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-11/bin/java 1 && \
-    java -version
+RUN mkdir /usr/lib/jvm
+RUN tar xvf /root/openjdk-11_linux-x64_bin.tar.gz -C /usr/lib/jvm
+RUN rm -f /root/openjdk-11_linux-x64_bin.tar.gz
+RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-11/bin/java 1
+RUN update-alternatives --install /usr/bin/jlink jlink /usr/lib/jvm/jdk-11/bin/jlink 1
 CMD ["bash"]
