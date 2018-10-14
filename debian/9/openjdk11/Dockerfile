@@ -13,6 +13,7 @@ COPY --from=builder /tmp/openjdk-11_linux-x64_bin.tar.gz /root
 RUN mkdir /usr/lib/jvm
 RUN tar xvf /root/openjdk-11_linux-x64_bin.tar.gz -C /usr/lib/jvm
 RUN rm -f /root/openjdk-11_linux-x64_bin.tar.gz
-RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-11/bin/java 1
-RUN update-alternatives --install /usr/bin/jlink jlink /usr/lib/jvm/jdk-11/bin/jlink 1
+ENV JAVA_HOME=/usr/lib/jvm/jdk-11
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
 CMD ["bash"]
