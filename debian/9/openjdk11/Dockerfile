@@ -13,7 +13,7 @@ COPY --from=builder /tmp/openjdk-11.0.1_linux-x64_bin.tar.gz /root
 RUN mkdir /usr/lib/jvm
 RUN tar xvf /root/openjdk-11.0.1_linux-x64_bin.tar.gz -C /usr/lib/jvm
 RUN rm -f /root/openjdk-11.0.1_linux-x64_bin.tar.gz
-ENV JAVA_HOME=/usr/lib/jvm/jdk-11.0.1.jdk
+ENV JAVA_HOME=/usr/lib/jvm/jdk-11.0.1
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
 CMD ["bash"]
